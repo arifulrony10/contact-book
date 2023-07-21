@@ -10,15 +10,14 @@
     />
 
     <link rel="stylesheet" href="style.css" />
-    <script src="./app.js" defer></script>
   </head>
   <body>
     <!-- form modal start -->
-    <section class="modal-container">
+    <section id="modal-container">
       <form action="" class="modal" id="modal">
         <div class="modal-header">
           <h3 id="modal-title">Add Contact</h3>
-          <button id="modal-close-btn">
+          <button id="modal-close-btn" class="modal-close-btn">
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>
@@ -112,7 +111,7 @@
     <header>
       <div class="heading">
         <h1>Address Book</h1>
-        <span class="icon material-symbols-outlined">add</span>
+        <span id="add-contact-btn" class="icon material-symbols-outlined">add</span>
       </div>
       <form action="">
         <div class="search-container">
@@ -145,7 +144,7 @@
 
     <!-- view contact details modal start -->
 
-    <section id="modal-container">
+    <section id="info-modal-container">
       <div class="modal details">
         <div class="img-container">
           <img src="./images/dp.jpg" alt="contact image" />
@@ -232,5 +231,7 @@
     </section>
 
     <!-- view contact details modal end -->
+    <script src="./code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>

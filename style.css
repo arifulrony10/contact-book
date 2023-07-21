@@ -20,7 +20,7 @@ body {
 }
 
 /* modal styles */
-.modal-container {
+#modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -28,7 +28,6 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1;
-  display: none;
 }
 
 .modal {
@@ -199,6 +198,14 @@ hr.spacer {
 }
 
 /* View details modal */
+#modal-container,
+#info-modal-container {
+  display: none;
+}
+#modal-container.open,
+#info-modal-container.open {
+  display: block;
+}
 
 .modal.details {
   top: 0;
