@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- form modal start -->
+    <section id="modal-container">
+      <form action="" class="modal" id="modal">
+        <div class="modal-header">
+          <h3 id="modal-title">Add Contact</h3>
+          <button id="modal-close-btn" class="modal-close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <hr class="spacer" />
+        <div class="modal-body">
+          <div class="modal-body-row">
+            <div class="modal-body-column">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                placeholder="First Name"
+              />
+            </div>
+            <div class="modal-body-column">
+              <label for="firstName">Last Name</label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                placeholder="Last Name"
+              />
+            </div>
+          </div>
+
+          <div class="modal-body-row">
+            <div class="modal-body-column grid-full-column">
+              <label for="phoneNumber">Phone Number</label>
+              <input
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                placeholder="Phone Number"
+              />
+            </div>
+          </div>
+
+          <div class="modal-body-row">
+            <div class="modal-body-column grid-full-column">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" placeholder="Email" />
+            </div>
+          </div>
+
+          <div class="modal-body-row">
+            <div class="modal-body-column">
+              <label for="street">Street</label>
+              <input
+                type="text"
+                name="street"
+                id="street"
+                placeholder="Street"
+              />
+            </div>
+            <div class="modal-body-column">
+              <label for="postalCode">Postal Code</label>
+              <input
+                type="text"
+                name="postalCode"
+                id="postalCode"
+                placeholder="Postal Code"
+              />
+            </div>
+          </div>
+
+          <div class="modal-body-row">
+            <div class="modal-body-column">
+              <label for="city">City</label>
+              <input type="text" name="city" id="city" placeholder="City" />
+            </div>
+            <div class="modal-body-column">
+              <label for="country">Country</label>
+              <select name="country" id="country">
+                <option value="usa">Bangladesh</option>
+                <option value="usa">USA</option>
+                <option value="usa">India</option>
+                <option value="usa">USA</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-button">
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </section>
+    <!-- form modal end -->
+
+    <!-- address book start -->
+    <header>
+      <div class="heading">
+        <h1>Address Book</h1>
+        <span id="add-contact-btn" class="icon material-symbols-outlined">add</span>
+      </div>
+      <form action="">
+        <div class="search-container">
+          <span class="icon material-symbols-outlined">search</span>
+          <input type="text" name="" id="" placeholder="Search" />
+        </div>
+      </form>
+      <hr class="spacer" />
+    </header>
+    <main>
+      <section class="mycard">
+        <article>
+          <img src="./images/dp.jpg" alt="profile picture" />
+          <div class="mycardInfo">
+            <h2>Md. Ariful Islam</h2>
+            <span>My Card</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- address book names -->
+      <ul class="addressbook-container">
+        <li class="addressbook-name">
+          <p>Md. Ariful</p>
+        </li>
+      </ul>
+    </main>
+
+    <!-- address book end -->
+
+    <!-- view contact details modal start -->
+
+    <section id="info-modal-container">
+      <div class="modal details">
+        <div class="img-container">
+          <img src="./images/dp.jpg" alt="contact image" />
+        </div>
+        <h3 class="name">Md. Ariful Islam</h3>
+        <div class="modal-icons">
+          <div class="modal-icon">
+            <span class="material-symbols-outlined">chat</span>
+            <p>message</p>
+          </div>
+          <div class="modal-icon">
+            <span class="material-symbols-outlined">call</span>
+            <p>mobile</p>
+          </div>
+          <div class="modal-icon">
+            <span class="material-symbols-outlined">video_call</span>
+            <p>FaceTime</p>
+          </div>
+          <div class="modal-icon">
+            <span class="material-symbols-outlined">mail</span>
+            <p>mail</p>
+          </div>
+        </div>
+
+        <!-- ! WORK FROM HERE -->
+        <div class="modal-body-row">
+          <div class="modal-body-column">
+            <span>Phone Number</span>
+            <p>+8801305252052</p>
+          </div>
+        </div>
+
+        <div class="modal-body-row">
+          <div class="modal-body-column grid-full-column">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              id="phoneNumber"
+              placeholder="Phone Number"
+            />
+          </div>
+        </div>
+
+        <div class="modal-body-row">
+          <div class="modal-body-column grid-full-column">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Email" />
+          </div>
+        </div>
+
+        <div class="modal-body-row">
+          <div class="modal-body-column">
+            <label for="street">Street</label>
+            <input type="text" name="street" id="street" placeholder="Street" />
+          </div>
+          <div class="modal-body-column">
+            <label for="postalCode">Postal Code</label>
+            <input
+              type="text"
+              name="postalCode"
+              id="postalCode"
+              placeholder="Postal Code"
+            />
+          </div>
+        </div>
+
+        <div class="modal-body-row">
+          <div class="modal-body-column">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" placeholder="City" />
+          </div>
+          <div class="modal-body-column">
+            <label for="country">Country</label>
+            <select name="country" id="country">
+              <option value="usa">Bangladesh</option>
+              <option value="usa">USA</option>
+              <option value="usa">India</option>
+              <option value="usa">USA</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- view contact details modal end -->
+    <script src="./code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
