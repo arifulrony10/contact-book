@@ -76,7 +76,7 @@ const addContact = () => {
     }
 
     contactDB.push({
-      id: contactDB.length,
+      id: contactDB.length + 1,
       firstName: $("#firstName").val().toLowerCase(),
       lastName: $("#lastName").val().toLowerCase(),
       phone: $("#phone").val().toLowerCase(),
@@ -113,8 +113,11 @@ const deleteContact = (index) => {
   showContacts();
 };
 
+let userID;
+
 // update data from localstorage
 const updateContact = (id) => {
+  userID = id;
   $(".contact-add-modal").addClass("open"); // open modal
   $(".form-msg").empty();
   $("#form-save-btn").css({ display: "none" }); // hide save btn
@@ -129,8 +132,7 @@ const updateContact = (id) => {
     contactDB = JSON.parse(localStorage.getItem("contactDB"));
   }
 
-  let index = contactDB.findIndex((obj) => obj.id === id);
-  console.log(index);
+  const index = contactDB.findIndex((obj) => obj.id === userID);
 
   $("#firstName").val(contactDB[index].firstName);
   $("#lastName").val(contactDB[index].lastName);
@@ -139,8 +141,9 @@ const updateContact = (id) => {
   $("#address").val(contactDB[index].address);
 
   $("#form-update-btn").click(() => {
+    const index = contactDB.findIndex((obj) => obj.id === userID);
     if (validateForm() === true) {
-
+      console.log(contactDB[index]);
       contactDB[index].firstName = $("#firstName").val().toLowerCase();
       contactDB[index].lastName = $("#lastName").val().toLowerCase();
       contactDB[index].phone = $("#phone").val().toLowerCase();
@@ -152,13 +155,13 @@ const updateContact = (id) => {
       showContacts(); // render contact lists
 
       resetFormInputs(); // emtpy input fileds
+      $(".contact-info").css({ display: "none" }); // hide contact info
       $("#form-save-btn").css({ display: "block" }); // show save btn
       $("#form-update-btn").css({ display: "none" }); // hide save btn
       $(".home-btn").css({ transform: "translateX(-120vw)" }); // hide back to home btn
-      $("#search").val(""); // empty search field
-      $(".search-form").css({ display: "block" }); // display search field
       $(".contact-add-modal").removeClass("open"); // remove modal
-      $(".contact-info").css({ display: "none" }); // hide contact info
+      $("#search").val(""); // empty search field
+      $("#search-form").css({ display: "block" }); // display search field
       $(".home").css({ display: "block" }); // show home
     }
   });
@@ -192,8 +195,12 @@ const searchContact = () => {
         element.lastName.charAt(0).toUpperCase() + element.lastName.slice(1)
       }</span>
                 <div>
-                    <button onclick="updateContact(${+element.id})" class="material-symbols-outlined contact-edit-btn">edit_square</button>
-                    <button onclick="deleteContact(${+element.id})" class="material-symbols-outlined contact-delete-btn">delete</button>
+                    <button onclick="updateContact(${
+                      element.id
+                    })" class="material-symbols-outlined contact-edit-btn">edit_square</button>
+                    <button onclick="deleteContact(${
+                      element.id
+                    })" class="material-symbols-outlined contact-delete-btn">delete</button>
                 </div>
             </li>`;
     });
