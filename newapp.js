@@ -33,7 +33,6 @@ function showContacts() {
   } else {
     contactDB = JSON.parse(localStorage.getItem("contactDB"));
   }
-  console.log(JSON.parse(localStorage.getItem("contactDB")));
 
   let html = "";
 
@@ -130,7 +129,7 @@ const updateContact = (id) => {
     contactDB = JSON.parse(localStorage.getItem("contactDB"));
   }
 
-  const index = contactDB.findIndex((obj) => obj.id === id);
+  let index = contactDB.findIndex((obj) => obj.id === id);
   console.log(index);
 
   $("#firstName").val(contactDB[index].firstName);
@@ -141,6 +140,7 @@ const updateContact = (id) => {
 
   $("#form-update-btn").click(() => {
     if (validateForm() === true) {
+
       contactDB[index].firstName = $("#firstName").val().toLowerCase();
       contactDB[index].lastName = $("#lastName").val().toLowerCase();
       contactDB[index].phone = $("#phone").val().toLowerCase();
@@ -175,14 +175,12 @@ const searchContact = () => {
   }
 
   const searchParam = $("#search").val();
-  console.log(searchParam);
   let res = [];
   contactDB.filter((obj) => {
     Object.values(obj).includes(searchParam) ? res.push(obj) : null;
   });
 
   if (res.length !== null) {
-    console.log(res.length);
     let html = "";
 
     res.forEach((element, index) => {
@@ -212,7 +210,6 @@ const searchContact = () => {
 };
 // ! show contact details
 const showContactDetails = (id) => {
-  console.log(id);
   $(".contact-info").css({ display: "flex" });
   $(".home").css({ display: "none" });
   $("#search-form").css({ display: "none" });
@@ -231,9 +228,6 @@ const showContactDetails = (id) => {
       usrInfo = obj;
     }
   });
-
-  console.log(usrInfo.firstName.charAt(0));
-
   $("#user-name-letter").html(usrInfo.firstName.charAt(0).toUpperCase());
   $("#user-name").html(
     `${
