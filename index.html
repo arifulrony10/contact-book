@@ -14,7 +14,7 @@
   <body>
     <!-- header start -->
     <header>
-      <h1><a href="#">My Address Book</a></h1>
+      <h1>My Address Book</h1>
       <span class="material-symbols-outlined" id="add-contact-btn"
         >add_circle</span
       >
@@ -23,43 +23,54 @@
     <!-- main start -->
     <main>
       <section class="contact-add-modal">
-        <form class="contact-add-form">
+        <!-- form -->
+        <div class="contact-add-form">
           <div class="form-header-container">
-            <h2>Add Contact</h2>
+            <h2 id="form-heading">Add Contact</h2>
             <span class="material-symbols-outlined" id="add-contact-close-btn"
               >close</span
             >
           </div>
+          <div class="form-msg"></div>
 
           <div class="contact-add-form-row">
             <div class="contact-add-form-col">
-              <label for="firstName">First Name</label>
+              <label for="firstName"
+                >First Name <span class="start">*</span></label
+              >
               <input
                 type="text"
                 name="firstName"
                 id="firstName"
                 placeholder="First Name"
+                required
               />
             </div>
             <div class="contact-add-form-col">
-              <label for="lastName">Last Name</label>
+              <label for="lastName"
+                >Last Name <span class="start">*</span></label
+              >
               <input
                 type="text"
                 name="lastName"
                 id="lastName"
                 placeholder="Last Name"
+                required
               />
             </div>
           </div>
 
           <div class="contact-add-form-row">
             <div class="contact-add-form-col">
-              <label for="phone">Phone Number</label>
+              <label for="phone"
+                >Phone Number <span class="start">*</span></label
+              >
               <input
                 type="text"
                 name="phone"
                 id="phone"
                 placeholder="Phone Number"
+                required
               />
             </div>
           </div>
@@ -67,12 +78,7 @@
           <div class="contact-add-form-row">
             <div class="contact-add-form-col">
               <label for="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="E-mail"
-              />
+              <input type="text" name="email" id="email" placeholder="E-mail" />
             </div>
           </div>
 
@@ -87,21 +93,21 @@
             </div>
           </div>
           <div class="contact-add-form-btn-container">
-            <button type="reset">
-              <span class="material-symbols-outlined" id="add-contact-reset-btn"
-                >ink_eraser</span
-              >Clear All
+            <button type="reset" id="form-reset-btn" onclick="formFieldReset()">
+              <span class="material-symbols-outlined">ink_eraser</span>Clear All
             </button>
-            <button type="submit">
-              <span class="material-symbols-outlined" id="add-contact-save-btn"
-                >save</span
-              >Save
+            <button type="submit" id="form-save-btn" onclick="addContact()">
+              <span class="material-symbols-outlined">save</span>Save
+            </button>
+            <button type="submit" id="form-update-btn">
+              <span class="material-symbols-outlined">update</span>Update
             </button>
           </div>
-        </form>
+        </div>
       </section>
       <section class="search-container">
-        <form id="search-form">
+        <!-- form -->
+        <div id="search-form">
           <div class="search">
             <div>
               <span class="material-symbols-outlined" id="contact-search-btn"
@@ -109,24 +115,70 @@
               >
               <input type="text" name="search" id="search" />
             </div>
-            <button type="submit">Search</button>
+            <button type="submit" onclick="searchContact()">Search</button>
           </div>
-        </form>
+        </div>
       </section>
       <section class="contact-list-container">
-        <ul class="contact-lists"></ul>
-        <div class="home-btn">
-          Back To Home
-          <span class="material-symbols-outlined" id="contact-search-btn"
-            >home</span
-          >
+        <div class="home">
+          <ul class="contact-lists" id="contact-lists"></ul>
+          <div class="home-btn">
+            Back To Home
+            <span class="material-symbols-outlined" id="contact-search-btn"
+              >home</span
+            >
+          </div>
+        </div>
+        <div class="contact-info">
+          <div class="img-letter">
+            <p id="user-name-letter">A</p>
+          </div>
+          <h3 id="user-name">Ariful Islam</h3>
+          <ul class="profile-icons">
+            <li class="profile-icon-container">
+              <span class="material-symbols-outlined profile-icon"
+                >message</span
+              >
+              <p class="profile-icon-text">message</p>
+            </li>
+            <li class="profile-icon-container">
+              <span class="material-symbols-outlined profile-icon">phone</span>
+              <p class="profile-icon-text">call</p>
+            </li>
+            <li class="profile-icon-container">
+              <span class="material-symbols-outlined profile-icon"
+                >videocam</span
+              >
+              <p class="profile-icon-text">video</p>
+            </li>
+            <li class="profile-icon-container">
+              <span class="material-symbols-outlined profile-icon">mail</span>
+              <p class="profile-icon-text">mail</p>
+            </li>
+          </ul>
+          <div class="email-container">
+            <p class="user-info-title">email</p>
+            <p id="user-email">ariful.rony10@gmail.com</p>
+          </div>
+          <div class="facetime">
+            <p>FaceTime</p>
+            <div class="facetime-icons">
+              <span class="material-symbols-outlined">videocam</span>
+              <span class="material-symbols-outlined">call</span>
+            </div>
+          </div>
+          <div class="address">
+            <p class="user-info-title">address</p>
+            <p id="user-address">Baridahra, Dhaka - 1212</p>
+          </div>
+          <div class="user-info-btn-container"></div>
         </div>
       </section>
     </main>
     <!-- main end -->
 
     <script src="./jquery-3.7.0.min.js"></script>
-    <script src="./app.js"></script>
+    <script src="./newapp.js"></script>
     <!-- script end -->
   </body>
 </html>

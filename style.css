@@ -5,7 +5,7 @@
   --gray: #f2f1f6;
   --gray-hover: #d1d0d5;
   --primary-color: #017afe;
-  --primary-hover: rgba(1, 122, 254, 0.8);
+  --primary-hover: #017afecc;
 }
 
 /* reset */
@@ -17,8 +17,12 @@
 body {
   margin: 0 auto;
   font-family: "Inter", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
+}
+
+.bg-white {
+  background-color: white;
 }
 
 /* header */
@@ -43,6 +47,9 @@ header > .material-symbols-outlined:hover {
 }
 
 /* contact add modal */
+.start {
+  color: red;
+}
 
 .contact-add-modal {
   position: relative;
@@ -132,6 +139,7 @@ header > .material-symbols-outlined:hover {
 main {
   padding: 0 10px;
   margin: 10px auto;
+  max-width: 698px;
 }
 .search {
   padding: 7px 10px;
@@ -142,12 +150,16 @@ main {
   align-items: center;
   position: relative;
 }
+.search div {
+  width: 100%;
+}
 .search > div > span {
   position: absolute;
 }
 .search > div > input {
   width: 100%;
   padding-left: 25px;
+  padding-right: 5px;
   border: none;
   outline: none;
   background-color: inherit;
@@ -167,7 +179,13 @@ main {
 }
 
 /* contact list */
-.contact-list-container > ul {
+.home {
+  display: block;
+}
+#search-form {
+  display: block;
+}
+.home > ul {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
@@ -181,9 +199,45 @@ main {
   border-radius: 10px;
   font-size: 1.4rem;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contact-list-info > span {
+  width: 100%;
 }
 .contact-list-info:hover {
   background-color: var(--gray-hover);
+}
+.contact-list-info div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.contact-edit-btn {
+  border: none;
+  font-size: 1.2rem;
+  padding: 5px;
+  background-color: orange;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.contact-edit-btn:hover {
+  background-color: rgb(168, 109, 0);
+}
+.contact-delete-btn {
+  border: none;
+  font-size: 1.2rem;
+  padding: 5px;
+  background-color: red;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.contact-delete-btn:hover {
+  background-color: rgb(163, 2, 2);
 }
 .no-contact-msg {
   font-size: 2rem;
@@ -192,7 +246,7 @@ main {
 }
 
 .home-btn {
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -204,10 +258,114 @@ main {
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
-  width: 60%;
-  margin: 0 auto;
+  width: 50%;
+  margin: 20px auto;
   transform: translateX(-120vw);
 }
 .home-btn:hover {
   background-color: var(--gray-hover);
+}
+#form-update-btn {
+  display: none;
+}
+
+/* contact info */
+.contact-info {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--gray);
+  padding: 20px 0;
+  position: relative;
+  height: 100vh;
+}
+
+.img-letter {
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin: 10px auto;
+  border: 2px solid;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+#user-name {
+  text-align: center;
+  font-size: 2rem;
+}
+.profile-icons {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 8px !important;
+}
+.profile-icon-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10px;
+  background-color: white;
+  padding: 3px;
+  margin: 0 5px;
+  color: var(--primary-color);
+}
+.profile-icon-container:hover {
+  background-color: var(--gray-hover);
+  color: var(--primary-hover);
+}
+.email-container,
+.address {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 10px;
+}
+.user-info-title {
+  font-size: 0.8rem;
+}
+.facetime {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 0 5px;
+  background-color: white;
+  border-radius: 10px;
+}
+.facetime-icons span {
+  padding: 5px;
+  color: var(--primary-color);
+  background-color: var(--gray);
+  border-radius: 50%;
+}
+.user-info-btn-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.contact-info-back-btn,
+.contact-info-edit-btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  background-color: white;
+  border-radius: 7px;
+  color: var(--primary-color);
+}
+.contact-info-back-btn:hover,
+.contact-info-edit-btn:hover {
+  background-color: var(--gray-hover);
+  color: var(--primary-hover);
+}
+
+.form-msg {
+  display: block;
+  color: red;
+  font-size: 1rem;
+  text-align: center;
 }

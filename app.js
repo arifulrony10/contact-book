@@ -1,7 +1,7 @@
 const contactList = [
   {
     id: 1,
-    firstName: "md. ariful",
+    firstName: "ariful",
     lastName: "islam",
     phone: "01305252052",
     email: "ariful.rony10@gmail.com",
@@ -68,53 +68,159 @@ const resetFormInputs = (form) => {
   form.trigger("reset");
 };
 
+// form validation
+function validateForm() {
+  const firstName = $("#firstName").val();
+  const lastName = $("#lastName").val();
+  const phone = $("#phone").val();
+  const email = $("#email").val();
+  const address = $("#address").val();
+
+  if (
+    firstName === "" ||
+    lastName === "" ||
+    phone === "" ||
+    email === "" ||
+    address === ""
+  ) {
+    alert("Name is required!");
+    return false;
+  }
+
+  return true;
+}
+
+// ? sowh contacts
+
+const showContacts = () => {
+  let contactDB;
+
+  if (localStorage.getItem("contactDB") === null) {
+    contactDB = [];
+  } else {
+    contactDB = JSON.parse(localStorage.getItem("contactDB"));
+  }
+
+  let html = "";
+
+  contactDB.forEach((element, index) => {
+    html += `<li class='contact-list-info'><span>${element.firstName} ${
+      element.lastName
+    }</span><div><button onclick="updateContact(${+index})" class="material-symbols-outlined contact-edit-btn">edit_square</button> <button onclick="deleteContact(${+index})" class="material-symbols-outlined contact-delete-btn">delete</button></div> </li>`;
+  });
+
+  $("#contact-lists").html(html);
+};
+
 // ! handle contact save
 const handleSaveContact = (e) => {
   // prevent default
   e.preventDefault();
   // save to contact list variable
-  const contactObj = {
-    id: +`${contactList.length}`,
+
+  // ? save data to local storage start
+  let contactDB;
+
+  if (localStorage.getItem("contactDB") === null) {
+    contactDB = [];
+  } else {
+    contactDB = JSON.parse(localStorage.getItem("contactDB"));
+  }
+
+  contactDB.push({
     firstName: $("#firstName")?.val().toLowerCase(),
     lastName: $("#lastName")?.val().toLowerCase(),
     phone: $("#phone")?.val().toLowerCase(),
     email: $("#email")?.val().toLowerCase(),
     address: $("#address")?.val().toLowerCase(),
-  };
-  contactList.push(contactObj);
-  console.log(contactList);
+  });
 
-  resetFormInputs(contactAddForm); // form input field reset
-  // close modal
-  closeAddContactModal();
-  updateContactPage(contactList);
+  localStorage.setItem("contactDB", JSON.stringify(contactDB));
+  // ? save data to local storage end
+
+  // const contactObj = {
+  //   id: +`${contactList.length}`,
+  //   firstName: $("#firstName")?.val().toLowerCase(),
+  //   lastName: $("#lastName")?.val().toLowerCase(),
+  //   phone: $("#phone")?.val().toLowerCase(),
+  //   email: $("#email")?.val().toLowerCase(),
+  //   address: $("#address")?.val().toLowerCase(),
+  // };
+  // contactList.push(contactObj);
+  // console.log(contactList);
+
+  // resetFormInputs(contactAddForm); // form input field reset
+  // // close modal
+  // closeAddContactModal();
+  // updateContactPage(contactList);
 };
 
 // ! update contact list
 
 const updateContactPage = (contactList) => {
-  // update dom
-  $(".contact-lists").empty();
+  let contactDB;
+  if (localStorage.getItem("contactDB") === null) {
+    contactDB = [];
+  } else {
+    contactDB = JSON.parse(localStorage.getItem("contactDB"));
+  }
 
-  // check if contact exists or not
-  contactList.length !== 0
-    ? contactList?.map((obj) => {
-        $("<li />", {
-          text: `${
-            obj.firstName.charAt(0).toUpperCase() +
-            obj.firstName.slice(1).toLowerCase()
-          } ${
-            obj.lastName.charAt(0).toUpperCase() +
-            obj.lastName.slice(1).toLowerCase()
-          }`,
-          class: "contact-list-info",
-        }).appendTo(".contact-lists");
-      })
-    : $("<li />", {
-        text: `No Contact Found`,
-        class: "no-contact-msg",
-      }).appendTo(".contact-lists") &&
-      homeBtn.css({ transform: "translateX(0)" });
+  let html = "";
+
+  contactDB.forEach((element, index) => {
+    html += `<li class='contact-list-info'><span>${element.firstName} ${
+      element.lastName
+    }</span><div><button onclick="updateContact(${+index})" class="material-symbols-outlined contact-edit-btn">edit_square</button> <button onclick="deleteContact(${+index})" class="material-symbols-outlined contact-delete-btn">delete</button></div> </li>`;
+  });
+
+  // append html to class lists
+  $("#contact-lists").html(html);
+};
+
+// !handle update contact
+
+const updateContact = (index) => {
+  openAddContactModal();
+
+  // document.getElementById("submit").style.display = "none";
+  // document.getElementById("update").style.display = "block";
+
+  let contactDB;
+
+  if (localStorage.getItem("contactDB") === null) {
+    contactDB = [];
+  } else {
+    contactDB = JSON.parse(localStorage.getItem("contactDB"));
+  }
+
+  $("#firstName").val(contactDB[index].firstName);
+  $("#lastName").val(contactDB[index].lastName);
+  $("#phone").val(contactDB[index].phone);
+  $("#email").val(contactDB[index].email);
+  $("#address").val(contactDB[index].address);
+
+  document.getElementById("update").onclick = () => {
+    if (validateForm() === true) {
+      contactDB[index].firstName = $("#firstName").val();
+      contactDB[index].lastName = $("#lastName").val();
+      contactDB[index].phone = $("#phone").val();
+      contactDB[index].email = $("#email").val();
+      contactDB[index].address = $("#address").val();
+
+      localStorage.setItem("contactDB", JSON.stringify(contactDB));
+
+      showContacts();
+
+      $("#firstName").val("");
+      $("#lastName").val("");
+      $("#phone").val("");
+      $("#email").val("");
+      $("#address").val("");
+
+      // document.getElementById("submit").style.display = "block";
+      // document.getElementById("update").style.display = "none";
+    }
+  };
 };
 
 // ! handle search
@@ -130,8 +236,6 @@ const handleContactSearch = (e) => {
   });
 
   updateContactPage(foundList);
-
-  console.log(foundList);
 };
 
 // ! handle home btn click
@@ -150,4 +254,4 @@ contactFormClearBtn.click(resetFormInputs(contactAddForm));
 searchForm.submit(handleContactSearch);
 homeBtn.click(handleHomeBtnClick);
 
-updateContactPage(contactList);
+document.onload(showContacts());
