@@ -155,8 +155,9 @@ const updateContact = (id) => {
   });
 };
 
-// search contact
-const searchContact = () => {
+// Search Contact
+$("#search").on("input", (e) => {
+  const value = e.target.value.toLowerCase();
   let contactDB;
 
   if (localStorage.getItem("contactDB") === null) {
@@ -165,16 +166,19 @@ const searchContact = () => {
     contactDB = JSON.parse(localStorage.getItem("contactDB"));
   }
 
-  const searchParam = $("#search").val();
   let res = [];
-  contactDB.filter((obj) => {
-    Object.values(obj).includes(searchParam) ? res.push(obj) : null;
+
+  contactDB.forEach((contact) => {
+    const isMatch =
+      contact.firstName.toLowerCase().includes(value) ||
+      contact.lastName.toLowerCase().includes(value);
+
+    isMatch ? res.push(contact) : null;
   });
 
-  if (res.length !== null) {
-    let html = "";
-
-    res.forEach((element, index) => {
+  let html = "";
+  if (res.length !== 0) {
+    res.forEach((element) => {
       html += `
             <li class='contact-list-info'data-id="${element.id}">
                 <span  onclick="showContactDetails(${element.id})" >${
@@ -193,16 +197,18 @@ const searchContact = () => {
             </li>`;
     });
     $("#contact-lists").html(html);
-    $(".home-btn").css({ transform: "translateX(0)" });
+    $(".home-btn").css({ transform: "translateX(-120vw)" });
   } else {
+    console.log("else");
     html += `
               <li class='no-contact-msg'>
                   No Contact Found
               </li>`;
-
+    $("#contact-lists").html(html);
     $(".home-btn").css({ transform: "translateX(0)" });
   }
-};
+});
+
 // ! show contact details
 const showContactDetails = (id) => {
   $(".contact-info").css({ display: "flex" });

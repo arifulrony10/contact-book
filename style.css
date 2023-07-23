@@ -21,9 +21,6 @@ body {
   overflow: hidden;
 }
 
-.bg-white {
-  background-color: white;
-}
 
 /* header */
 header {
@@ -171,18 +168,6 @@ main {
   font-size: 1rem;
 }
 
-.search button {
-  cursor: pointer;
-  background-color: var(--gray-hover);
-  padding: 5px 10px;
-  border: none;
-  border-radius: 10px;
-}
-.search button:hover {
-  color: var(--primary-color);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-}
-
 /* contact list */
 .home {
   display: block;
@@ -245,6 +230,7 @@ main {
   background-color: rgb(163, 2, 2);
 }
 .no-contact-msg {
+  list-style: none;
   font-size: 2rem;
   text-align: center;
   color: var(--gray-hover);
@@ -373,4 +359,8 @@ main {
   color: red;
   font-size: 1rem;
   text-align: center;
+}
+
+.hide {
+  display: none;
 }
